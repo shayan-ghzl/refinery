@@ -1,0 +1,165 @@
+@use "reset-variables" as var;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    direction: var.$body-direction;
+}
+
+body {
+    font-family: var(--body-font-family, #{var.$body-font-family});
+    font-size: var(--body-font-size, #{var.$body-font-size});
+    font-weight: var(--body-font-weight, #{var.$body-font-weight});
+    line-height: var(--body-line-height, #{var.$body-line-height});
+    text-align: var(--body-text-align, #{var.$body-text-align});
+    color: var(--body-color, #{var.$body-color});
+    background-color: var(--body-bg, #{var.$body-background-color});
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+h1 {
+    font-family: var(--heading-1-font-family, #{var.$heading-font-family});
+    font-size: var(--heading-1-font-size, #{var.$heading-1-font-size});
+    font-weight: var(--heading-1-font-weight, #{var.$heading-font-weight});
+    letter-spacing: var(--heading-1-letter-spacing, 0);
+    line-height: var(--heading-1-line-height, #{var.$heading-line-height});
+    text-align: var(--heading-1-text-align, #{var.$heading-text-align});
+    color: var(--heading-1-color, #{var.$heading-color});
+    margin: var(--heading-1-margin, #{var.$heading-margin});
+}
+
+h2 {
+    font-family: var(--heading-2-font-family, #{var.$heading-font-family});
+    font-size: var(--heading-2-font-size, #{var.$heading-2-font-size});
+    font-weight: var(--heading-2-font-weight, #{var.$heading-font-weight});
+    letter-spacing: var(--heading-2-letter-spacing, 0);
+    line-height: var(--heading-2-line-height, #{var.$heading-line-height});
+    text-align: var(--heading-2-text-align, #{var.$heading-text-align});
+    color: var(--heading-2-color, #{var.$heading-color});
+    margin: var(--heading-2-margin, #{var.$heading-margin});
+}
+
+h3 {
+    font-family: var(--heading-3-font-family, #{var.$heading-font-family});
+    font-size: var(--heading-3-font-size, #{var.$heading-3-font-size});
+    font-weight: var(--heading-3-font-weight, #{var.$heading-font-weight});
+    letter-spacing: var(--heading-3-letter-spacing, 0);
+    line-height: var(--heading-3-line-height, #{var.$heading-line-height});
+    text-align: var(--heading-3-text-align, #{var.$heading-text-align});
+    color: var(--heading-3-color, #{var.$heading-color});
+    margin: var(--heading-3-margin, #{var.$heading-margin});
+}
+
+h4 {
+    font-family: var(--heading-4-font-family, #{var.$heading-font-family});
+    font-size: var(--heading-4-font-size, #{var.$heading-4-font-size});
+    font-weight: var(--heading-4-font-weight, #{var.$heading-font-weight});
+    letter-spacing: var(--heading-4-letter-spacing, 0);
+    line-height: var(--heading-4-line-height, #{var.$heading-line-height});
+    text-align: var(--heading-4-text-align, #{var.$heading-text-align});
+    color: var(--heading-4-color, #{var.$heading-color});
+    margin: var(--heading-4-margin, #{var.$heading-margin});
+}
+
+h5 {
+    font-family: var(--heading-5-font-family, #{var.$heading-font-family});
+    font-size: var(--heading-5-font-size, #{var.$heading-5-font-size});
+    font-weight: var(--heading-5-font-weight, #{var.$heading-font-weight});
+    letter-spacing: var(--heading-5-letter-spacing, 0);
+    line-height: var(--heading-5-line-height, #{var.$heading-line-height});
+    text-align: var(--heading-5-text-align, #{var.$heading-text-align});
+    color: var(--heading-5-color, #{var.$heading-color});
+    margin: var(--heading-5-margin, #{var.$heading-margin});
+}
+
+h6 {
+    font-family: var(--heading-6-font-family, #{var.$heading-font-family});
+    font-size: var(--heading-6-font-size, #{var.$heading-6-font-size});
+    font-weight: var(--heading-6-font-weight, #{var.$heading-font-weight});
+    letter-spacing: var(--heading-6-letter-spacing, 0);
+    line-height: var(--heading-6-line-height, #{var.$heading-line-height});
+    text-align: var(--heading-6-text-align, #{var.$heading-text-align});
+    color: var(--heading-6-color, #{var.$heading-color});
+    margin: var(--heading-6-margin, #{var.$heading-margin});
+}
+
+p {
+    font-family: var(--paragraph-font-family, #{var.$paragraph-font-family});
+    font-size: var(--paragraph-font-size, #{var.$paragraph-font-size});
+    font-weight: var(--paragraph-font-weight, #{var.$paragraph-font-weight});
+    line-height: var(--paragraph-line-height, #{var.$paragraph-line-height});
+    text-align: var(--paragraph-text-align, #{var.$paragraph-text-align});
+    color: var(--paragraph-color, #{var.$paragraph-color});
+    margin: var(--paragraph-margin, #{var.$paragraph-margin});
+}
+
+a {
+    display: var(--anchor-display, inline);
+    font-weight: var(--anchor-font-weight, inherit);
+    color: var(--anchor-color, #{var.$anchor-color});
+    padding: var(--anchor-padding, 0);
+    text-decoration: none;
+}
+
+a:hover {
+    --anchor-color: var(--anchor-hover-color, #{var.$anchor-hover-color});
+}
+
+ul,
+ol {
+    font-family: var(--list-font-family, inherit);
+    font-size: var(--list-font-size, inherit);
+    font-weight: var(--list-font-weight, inherit);
+    color: var(--list-color, inherit);
+    list-style: var(--list-style, none);
+    margin: var(--list-margin, 0);
+    padding: var(--list-padding, 0);
+
+    li {
+        font-weight: var(--item-font-weight, inherit);
+        color: var(--item-color, inherit);
+
+        &:not(:last-child) {
+            margin-bottom: var(--item-margin-bottom, 0);
+        }
+    }
+}
+
+b,
+strong,
+.strong {
+    font-weight: 700;
+}
+
+svg {
+    vertical-align: middle;
+}
+
+input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]), textarea {
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+        -webkit-text-fill-color: var(--autofill-color, #{var.$input-autofill-color}) !important;
+    }
+
+    &:-webkit-autofill:disabled {
+        --autofill-color: #{var.$input-disabled-autofill-color};
+        pointer-events: none;
+        opacity: 0.65;
+    }
+}

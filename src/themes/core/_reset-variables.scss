@@ -1,0 +1,39 @@
+$text-color: #000 !default;
+$text-align: left !default;
+// ----------------body----------------
+$body-font-family: "Roboto", Roboto !default;
+$body-font-size: 16px !default;
+$body-font-weight: 400 !default;
+$body-line-height: 1.5 !default;
+$body-text-align: $text-align !default;
+$body-direction: ltr !default;
+$body-color: $text-color !default;
+$body-background-color: #fff !default;
+// ----------------heading----------------
+$heading-font-family: "Roboto", Roboto !default;
+$heading-font-weight: 700 !default;
+$heading-line-height: 1.5 !default;
+$heading-text-align: $text-align !default;
+$heading-color: $text-color !default;
+$heading-margin: 0 0 16px 0 !default;
+
+$heading-1-font-size: 28px !default;
+$heading-2-font-size: 24px !default;
+$heading-3-font-size: 22px !default;
+$heading-4-font-size: 20px !default;
+$heading-5-font-size: 18px !default;
+$heading-6-font-size: 16px !default;
+// ----------------paragraph----------------
+$paragraph-font-family: "Roboto", Roboto !default;
+$paragraph-font-size: 16px !default;
+$paragraph-font-weight: 400 !default;
+$paragraph-line-height: 1.5 !default;
+$paragraph-text-align: $text-align !default;
+$paragraph-color: $text-color !default;
+$paragraph-margin: 0 0 16px 0 !default;
+// ----------------anchor----------------
+$anchor-color: #fff !default;
+$anchor-hover-color: #0000ff !default;
+// ----------------input----------------
+$input-autofill-color: #484848 !default;
+$input-disabled-autofill-color: #c9c9c9 !default;

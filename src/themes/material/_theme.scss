@@ -1,0 +1,84 @@
+@use "sass:color";
+@use "@angular/material" as mat;
+@use "../environments" as env;
+
+$dark-primary-text: #1D2322;
+$light-primary-text: white;
+
+$primary-palette: (
+  50: color.scale(env.$primary-color, $lightness: 90%),
+  100: color.scale(env.$primary-color, $lightness: 80%),
+  200: color.scale(env.$primary-color, $lightness: 60%),
+  300: color.scale(env.$primary-color, $lightness: 40%),
+  400: color.scale(env.$primary-color, $lightness: 20%),
+  500: env.$primary-color,
+  600: color.mix(env.$primary-color, black, 20%),
+  700: color.mix(env.$primary-color, black, 40%), 
+  800: color.mix(env.$primary-color, black, 60%), 
+  900: color.mix(env.$primary-color, black, 80%), 
+  A100: color.scale(env.$primary-color, $lightness: 15%),
+  A200: color.scale(env.$primary-color, $lightness: 30%),
+  A400: color.scale(env.$primary-color, $lightness: 50%),
+  A700: color.scale(env.$primary-color, $lightness: 70%),
+  contrast: (
+    50: $light-primary-text,
+    100: $light-primary-text,
+    200: $light-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $light-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$accent-palette: (
+  50: color.scale(env.$accent-color, $lightness: 90%),
+  100: color.scale(env.$accent-color, $lightness: 80%),
+  200: color.scale(env.$accent-color, $lightness: 60%),
+  300: color.scale(env.$accent-color, $lightness: 40%),
+  400: color.scale(env.$accent-color, $lightness: 20%),
+  500: env.$accent-color,
+  600: color.mix(env.$accent-color, black, 20%),
+  700: color.mix(env.$accent-color, black, 40%), 
+  800: color.mix(env.$accent-color, black, 60%), 
+  900: color.mix(env.$accent-color, black, 80%), 
+  A100: color.scale(env.$accent-color, $lightness: 15%),
+  A200: color.scale(env.$accent-color, $lightness: 30%),
+  A400: color.scale(env.$accent-color, $lightness: 50%),
+  A700: color.scale(env.$accent-color, $lightness: 70%),
+  contrast: (
+    50: $light-primary-text,
+    100: $light-primary-text,
+    200: $light-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $light-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$primary: mat.m2-define-palette($primary-palette);
+$accent: mat.m2-define-palette($accent-palette);
+
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: mat.m2-define-typography-config($font-family: var(--body-font-family, #{env.$body-font-family})),
+  density: 0,
+));

@@ -1,0 +1,8 @@
+@use 'sass:color';
+
+@function hex-to-rgb($hex-color) {
+    @return color.red($hex-color), color.green($hex-color), color.blue($hex-color);
+}
+
+$primary-color: #ff0000 !default;
+$accent-color: #636363 !default;

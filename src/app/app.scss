@@ -1,0 +1,6 @@
+@use "../themes/environments" as env;
+
+main {
+    width: env.$layout-max-width;
+    margin: 32px auto;
+}
