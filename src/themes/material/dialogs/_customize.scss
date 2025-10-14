@@ -1,4 +1,7 @@
 .app-dialog-container {
+    // dialog
+    --mat-dialog-actions-padding: 16px;
+
     .mat-mdc-dialog-title {
         display: flex;
         align-items: center;
