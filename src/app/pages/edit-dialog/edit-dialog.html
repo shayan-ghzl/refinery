@@ -9,10 +9,50 @@
 
 <!-- Dialog Content -->
 <mat-dialog-content>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()" #ngForm="ngForm">
 
+        <!-- firstName field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>firstName</mat-label>
+            <input matInput formControlName="firstName">
+        </mat-form-field>
+
+        <!-- lastName field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>lastName</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+
+        <!-- age field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>age</mat-label>
+            <input matInput type="number" formControlName="age">
+        </mat-form-field>
+
+        <!-- education field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>education</mat-label>
+            <input matInput formControlName="education">
+        </mat-form-field>
+
+        <!-- nationalId field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>nationalId</mat-label>
+            <input matInput formControlName="nationalId">
+        </mat-form-field>
+
+        <!-- birthDate field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" (click)="toPicker.open()">
+            <mat-label>birthDate</mat-label>
+            <input readonly matInput [matDatepicker]="toPicker" formControlName="birthDate">
+            <mat-datepicker #toPicker startView="multi-year" />
+        </mat-form-field>
+
+    </form>
 </mat-dialog-content>
 
 <!-- Dialog Actions -->
 <div mat-dialog-actions align="end">
-    <button type="button" mat-dialog-close mat-stroked-button color="primary">Okey!</button>
+    <button type="button" mat-stroked-button mat-dialog-close color="primary" routerLink="../">Cancel</button>
+    <button type="button" mat-flat-button color="primary" mat-dialog-close [disabled]="formGroup.invalid || formGroup.pristine" (click)="ngForm.onSubmit($event)">Edit</button>
 </div>

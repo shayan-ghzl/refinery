@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { User } from '../models/models';
 
 @Injectable({
@@ -6,15 +6,7 @@ import { User } from '../models/models';
 })
 export class States {
   private users = signal<User[]>([
-    {
-      id: 1,
-      firstName: 'shayan',
-      lastName: 'ghazali',
-      age: 32,
-      education: 'computer',
-      nationalId: '1271508338',
-      birthDate: '1372/07/07',
-    },
+
   ]);
 
   private nextId = computed(() => {
@@ -23,6 +15,25 @@ export class States {
     const maxId = Math.max(...users.map(u => u.id));
     return maxId + 1;
   });
+
+  constructor() {
+    try {
+      const saved = localStorage.getItem('users');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          this.users.set(parsed);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading users from localStorage:', error);
+    }
+
+    effect(() => {
+      const currentUsers = this.users();
+      localStorage.setItem('users', JSON.stringify(currentUsers));
+    });
+  }
 
   getUsers() {
     return this.users.asReadonly();
@@ -34,6 +45,14 @@ export class States {
 
   removeItem(user: User) {
     this.users.update(items => items.filter(item => item.id !== user.id));
+  }
+
+  editItem(updatedUser: User) {
+    this.users.update(items =>
+      items.map(item =>
+        item.id === updatedUser.id ? { ...item, ...updatedUser } : item
+      )
+    );
   }
 
   clearItems() {

@@ -52,10 +52,10 @@
         <ng-container matColumnDef="more">
             <th mat-header-cell *matHeaderCellDef> more </th>
             <td mat-cell *matCellDef="let element">
-                <button type="button" matIconButton (click)="editDialog()">
+                <button type="button" matIconButton (click)="editDialog(element)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button type="button" matIconButton (click)="deleteDialog()">
+                <button type="button" matIconButton (click)="deleteDialog(element)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

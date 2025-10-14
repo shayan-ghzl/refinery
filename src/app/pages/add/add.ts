@@ -27,9 +27,9 @@ export class Add {
   formGroup = new FormGroup({
     firstName: new FormControl<string | null>(null, [Validators.required]),
     lastName: new FormControl<string | null>(null, [Validators.required]),
-    age: new FormControl<number | null>(null, [Validators.required]),
+    age: new FormControl<number | null>(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1), Validators.max(120)]),
     education: new FormControl<string | null>(null, [Validators.required]),
-    nationalId: new FormControl<string | null>(null, [Validators.required]),
+    nationalId: new FormControl<string | null>(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
     birthDate: new FormControl<Date | null>(null, [Validators.required]),
   });
 

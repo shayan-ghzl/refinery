@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { User } from '../../shared/models/models';
+import { States } from '../../shared/services/states';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -14,5 +16,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './delete-dialog.scss'
 })
 export class DeleteDialog {
-
+  dialogData = inject<User>(MAT_DIALOG_DATA);
+  states = inject(States);
 }
