@@ -1,0 +1,22 @@
+header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 46px;
+    // h1
+    --heading-1-margin: 0;
+}
+mat-form-field {
+    display: block;
+
+    &:not(:last-child) {
+        margin-bottom: 16px;
+    }
+}
+.btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 16px;
+    margin-top: 46px;
+}

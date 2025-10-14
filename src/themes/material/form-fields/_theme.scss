@@ -1,0 +1,4 @@
+@use "@angular/material" as mat;
+@use "../theme";
+
+@include mat.form-field-theme(theme.$theme);

@@ -2,8 +2,8 @@
 @use "@angular/material" as mat;
 @use "../environments" as env;
 
-$dark-primary-text: #1D2322;
-$light-primary-text: white;
+$dark-primary-text: #fff;
+$light-primary-text: #fff;
 
 $primary-palette: (
   50: color.scale(env.$primary-color, $lightness: 90%),

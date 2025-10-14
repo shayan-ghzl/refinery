@@ -1,0 +1,16 @@
+.app-dialog-container {
+    .mat-mdc-dialog-title {
+        display: flex;
+        align-items: center;
+        // h1
+        --heading-1-font-size: 26px;
+        --heading-1-font-weight: 500;
+        --heading-1-margin: 0;
+        // dialog
+        --mat-dialog-headline-padding: 16px;
+
+        .mat-mdc-icon-button {
+            margin-left: auto;
+        }
+    }
+}
