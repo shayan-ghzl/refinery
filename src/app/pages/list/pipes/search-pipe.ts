@@ -18,7 +18,6 @@ export class SearchPipe implements PipeTransform {
       user.lastName.toLowerCase().includes(key) ||
       user.nationalId.toLowerCase().includes(key) ||
       user.education.toLowerCase().includes(key) ||
-      user.profile.toLowerCase().includes(key) ||
       user.age.toString().includes(key) ||
       user.birthDate.toLowerCase().includes(key)
     );
