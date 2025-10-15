@@ -1,15 +1,32 @@
 <header>
     <h1>Users List</h1>
-    <button type="button" mat-flat-button color="primary" routerLink="/add">Add New User</button>
+
+    <div>
+        <!-- search field -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>search</mat-label>
+            <input matInput #searchInput>
+        </mat-form-field>
+
+        <button type="button" mat-flat-button color="primary" routerLink="/add">Add New User</button>
+    </div>
 </header>
 
 <section>
-    <table mat-table [dataSource]="users()" class="mat-elevation-z8">
+    <table mat-table [dataSource]="users() | search : searchInput.value">
 
         <!-- index Column -->
         <ng-container matColumnDef="index">
             <th mat-header-cell *matHeaderCellDef> index </th>
             <td mat-cell *matCellDef="let index = index"> {{index + 1}} </td>
+        </ng-container>
+
+        <!-- profile Column -->
+        <ng-container matColumnDef="profile">
+            <th mat-header-cell *matHeaderCellDef> profile </th>
+            <td mat-cell *matCellDef="let element">
+                <img [src]="element.profile" height="36" alt="profile picture" />
+            </td>
         </ng-container>
 
         <!-- firstName Column -->
@@ -65,8 +82,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         <tr *matNoDataRow>
-            <td colspan="7">
-                No Data
+            <td [attr.colspan]="displayedColumns.length">
+                <p>No Data</p>
             </td>
         </tr>
     </table>

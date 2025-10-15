@@ -16,13 +16,16 @@ import { States } from '../../shared/services/states';
     MatDatepickerModule,
     MatIconModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    MatIconModule
   ],
   templateUrl: './add.html',
   styleUrl: './add.scss',
 })
 export class Add {
   readonly states = inject(States);
+
+  previewUrl = './images/user.svg';
 
   formGroup = new FormGroup({
     firstName: new FormControl<string | null>(null, [Validators.required]),
@@ -33,15 +36,31 @@ export class Add {
     birthDate: new FormControl<Date | null>(null, [Validators.required]),
   });
 
+  onFileSelected(event: Event): void {
+    const input = event.currentTarget as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => this.previewUrl = reader.result as string;
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(): void {
+    this.previewUrl = './images/user.svg';
+  }
+
   submit() {
     if (this.formGroup.invalid) {
       return;
     }
     const formattedDate = (this.formGroup.value.birthDate as Date).toISOString().split('T')[0].replace(/-/g, '/');
 
-    const newUser = { ...this.formGroup.value, birthDate: formattedDate } as Omit<User, 'id'>;
+    const newUser = { ...this.formGroup.value, birthDate: formattedDate, profile: this.previewUrl } as Omit<User, 'id'>;
     this.states.addItem(newUser);
 
     this.formGroup.reset();
+    this.previewUrl = './images/user.svg';
   }
 }

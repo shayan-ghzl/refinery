@@ -5,3 +5,16 @@ mat-form-field {
         margin-bottom: 16px;
     }
 }
+.upload-picture-field {
+    display: block;
+    margin-bottom: 32px;
+
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+}

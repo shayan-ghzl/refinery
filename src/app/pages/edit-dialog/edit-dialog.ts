@@ -5,6 +5,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { _closeDialogVia, MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { AutoFocus } from '../../shared/directives/auto-focus';
 import { User } from '../../shared/models/models';
 import { States } from '../../shared/services/states';
 
@@ -17,6 +18,7 @@ import { States } from '../../shared/services/states';
     MatIconModule,
     MatDatepickerModule,
     ReactiveFormsModule,
+    AutoFocus
   ],
   templateUrl: './edit-dialog.html',
   styleUrl: './edit-dialog.scss',
@@ -25,6 +27,8 @@ export class EditDialog {
   dialogData = inject<User>(MAT_DIALOG_DATA);
   dialogRef = inject<MatDialogRef<any>>(MAT_DIALOG_DATA, { optional: true });
   states = inject(States);
+
+  previewUrl = './images/user.svg';
 
   formGroup = new FormGroup({
     firstName: new FormControl<string | null>(null, [Validators.required]),
@@ -50,15 +54,36 @@ export class EditDialog {
       nationalId: this.dialogData.nationalId,
       birthDate: date,
     });
+
+    this.previewUrl = this.dialogData.profile;
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.currentTarget as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result as string;
+        this.formGroup.markAsDirty();
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(): void {
+    this.previewUrl = './images/user.svg';
+    this.formGroup.markAsDirty();
   }
 
   submit() {
-    if (this.formGroup.invalid) {
+    if (this.formGroup.invalid || this.formGroup.pristine) {
       return;
     }
     const formattedDate = (this.formGroup.value.birthDate as Date).toISOString().split('T')[0].replace(/-/g, '/');
 
-    const updatedUser = { ...this.formGroup.value, birthDate: formattedDate, id: this.dialogData.id } as User;
+    const updatedUser = { ...this.formGroup.value, birthDate: formattedDate, id: this.dialogData.id, profile: this.previewUrl } as User;
     this.states.editItem(updatedUser);
 
     if (this.dialogRef) {

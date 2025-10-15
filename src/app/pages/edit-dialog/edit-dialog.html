@@ -11,10 +11,19 @@
 <mat-dialog-content>
     <form [formGroup]="formGroup" (ngSubmit)="submit()" #ngForm="ngForm">
 
+        <!-- upload picture field -->
+        <label class="upload-picture-field">
+            <input type="file" accept=".png, .jpg, .jpeg" hidden (change)="onFileSelected($event)">
+            <img [src]="previewUrl" alt="Uploaded image" />
+            <button type="button" mat-stroked-button (click)="removeImage()">
+                <mat-icon>delete</mat-icon> Remove Picture
+            </button>
+        </label>
+
         <!-- firstName field -->
         <mat-form-field appearance="outline" subscriptSizing="dynamic">
             <mat-label>firstName</mat-label>
-            <input matInput formControlName="firstName">
+            <input matInput formControlName="firstName" appAutoFocus>
         </mat-form-field>
 
         <!-- lastName field -->
