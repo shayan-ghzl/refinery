@@ -14,12 +14,7 @@ export class SearchPipe implements PipeTransform {
     const key = searchKey.toLowerCase().trim();
 
     return users.filter(user =>
-      user.firstName.toLowerCase().includes(key) ||
-      user.lastName.toLowerCase().includes(key) ||
-      user.nationalId.toLowerCase().includes(key) ||
-      user.education.toLowerCase().includes(key) ||
-      user.age.toString().includes(key) ||
-      user.birthDate.toLowerCase().includes(key)
+      (user.firstName + user.lastName + user.nationalId + user.education + user.age + user.birthDate).toLowerCase().includes(key)
     );
   }
 
