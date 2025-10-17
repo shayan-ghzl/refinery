@@ -15,5 +15,5 @@
 <!-- Dialog Actions -->
 <div mat-dialog-actions align="center">
     <button type="button" mat-stroked-button color="primary" mat-dialog-close>No</button>
-    <button type="button" mat-flat-button color="primary" mat-dialog-close (click)="states.removeItem(dialogData)">Yes</button>
+    <button type="button" mat-flat-button color="primary" (click)="confirm()" (document:keydown.enter)="confirm()">Yes</button>
 </div>

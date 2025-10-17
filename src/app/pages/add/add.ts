@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
+import { UploadImage } from '../../shared/components/upload-image/upload-image';
 import { User } from '../../shared/models/models';
 import { States } from '../../shared/services/states';
 
@@ -17,17 +18,17 @@ import { States } from '../../shared/services/states';
     MatIconModule,
     ReactiveFormsModule,
     RouterLink,
-    MatIconModule
+    UploadImage
   ],
   templateUrl: './add.html',
   styleUrl: './add.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Add {
+export default class Add {
   readonly states = inject(States);
 
-  previewUrl = './images/user.svg';
-
   formGroup = new FormGroup({
+    profile: new FormControl<string | null>(null),
     firstName: new FormControl<string | null>(null, [Validators.required]),
     lastName: new FormControl<string | null>(null, [Validators.required]),
     age: new FormControl<number | null>(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1), Validators.max(120)]),
@@ -36,31 +37,21 @@ export class Add {
     birthDate: new FormControl<Date | null>(null, [Validators.required]),
   });
 
-  onFileSelected(event: Event): void {
-    const input = event.currentTarget as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-
-      const reader = new FileReader();
-      reader.onload = () => this.previewUrl = reader.result as string;
-      reader.readAsDataURL(file);
-    }
+  formatDate(date: Date) {
+    return date.getFullYear() + '/' +
+      String(date.getMonth() + 1).padStart(2, '0') + '/' +
+      String(date.getDate()).padStart(2, '0');
   }
 
-  removeImage(): void {
-    this.previewUrl = './images/user.svg';
-  }
-
-  submit() {
+  submit(event: Event) {
     if (this.formGroup.invalid) {
       return;
     }
-    const formattedDate = (this.formGroup.value.birthDate as Date).toISOString().split('T')[0].replace(/-/g, '/');
+    const formattedDate = this.formatDate(this.formGroup.value.birthDate as Date);
 
-    const newUser = { ...this.formGroup.value, birthDate: formattedDate, profile: this.previewUrl } as Omit<User, 'id'>;
+    const newUser = { ...this.formGroup.value, birthDate: formattedDate } as Omit<User, 'id'>;
     this.states.addItem(newUser);
 
-    this.formGroup.reset();
-    this.previewUrl = './images/user.svg';
+    (event.target as HTMLFormElement).reset();
   }
 }

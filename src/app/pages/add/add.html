@@ -7,16 +7,10 @@
 </header>
 
 <section>
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <form [formGroup]="formGroup" (ngSubmit)="submit($event)">
 
         <!-- upload picture field -->
-        <label class="upload-picture-field">
-            <input type="file" accept=".png, .jpg, .jpeg" hidden (change)="onFileSelected($event)">
-            <img [src]="previewUrl" alt="Uploaded image" />
-            <button type="button" mat-stroked-button (click)="removeImage()">
-                <mat-icon>delete</mat-icon> Remove Picture
-            </button>
-        </label>
+        <app-upload-image formControlName="profile" />
 
         <!-- firstName field -->
         <mat-form-field appearance="outline" subscriptSizing="dynamic">

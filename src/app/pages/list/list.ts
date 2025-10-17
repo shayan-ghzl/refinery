@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,9 +22,10 @@ import { SearchPipe } from './pipes/search-pipe';
     SearchPipe
   ],
   templateUrl: './list.html',
-  styleUrl: './list.scss'
+  styleUrl: './list.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class List {
+export default class List {
   readonly dialog = inject(MatDialog);
   readonly states = inject(States);
 

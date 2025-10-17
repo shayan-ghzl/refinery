@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import { Add } from './pages/add/add';
-import { List } from './pages/list/list';
 
 export const routes: Routes = [
-    { path: 'list', component: List },
-    { path: 'add', component: Add },
+    {
+        path: 'list',
+        loadComponent: () => import('./pages/list/list'),
+    },
+    {
+        path: 'add',
+        loadComponent: () => import('./pages/add/add'),
+    },
     { path: '**', redirectTo: 'list' },
 ];
