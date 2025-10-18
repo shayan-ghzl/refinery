@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>test</mat-label>
+    <input matInput ngModel name="test" required #testModel="ngModel" (keydown.enter)="add(testModel)">
+</mat-form-field>
+
+<button type="button" mat-flat-button color="primary" [disabled]="testModel.invalid" (click)="add(testModel)">Add</button>
+
+<app-child [list]="list()"/>

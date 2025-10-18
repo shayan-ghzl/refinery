@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
+import { Parent } from '../../shared/components/parent/parent';
 import { User } from '../../shared/models/models';
 import { States } from '../../shared/services/states';
 import { DeleteDialog } from '../delete-dialog/delete-dialog';
@@ -19,7 +20,8 @@ import { SearchPipe } from './pipes/search-pipe';
     MatIconModule,
     RouterLink,
     MatInputModule,
-    SearchPipe
+    SearchPipe,
+    Parent
   ],
   templateUrl: './list.html',
   styleUrl: './list.scss',
